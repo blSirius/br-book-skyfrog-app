@@ -45,7 +45,7 @@ function Login() {
                         <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-emerald-500  to-green-500 hover:to-green-600 ">
                             Login
                         </button>
-                        <a href="/register" className='underline decoration-2 text-blue-600 text-sm' >register</a>
+                        <a href="/register" className=' decoration-2 text-blue-600 text-xs w-full' >ยังไม่เป็นสมาชิกใช่มั้ย? register</a>
                     </div>
                 </form>
             </div>

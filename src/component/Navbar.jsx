@@ -31,7 +31,7 @@ const Navbar = () => {
                             <a href="/borrow_list" className="py-4 px-2 text-green-800 hover:text-green-600 transition duration-300">รายการยืมหนังสือ</a>
                             <button className='bg-green-500 hover:bg-green-600 text-white py-2 px-2 rounded' type="button" onClick={Logout}>Logout</button>
                         </div>
-                        
+
                     </div>
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center">
@@ -56,6 +56,7 @@ const Navbar = () => {
                 <a href="/book" className="block py-2 px-4 text-sm text-green-800 hover:bg-green-100">รายการหนังสือ</a>
                 <a href="/member" className="block py-2 px-4 text-sm text-green-800 hover:bg-green-100">สมาชิกห้องสมุด</a>
                 <a href="/borrow_list" className="block py-2 px-4 text-sm text-green-800 hover:bg-green-100">รายการยืมหนังสือ</a>
+                <button className="block py-2 px-4 text-sm font-bold text-green-400 hover:text-green-600" type="button" onClick={Logout}>Logout</button>
             </div>
         </nav>
     );

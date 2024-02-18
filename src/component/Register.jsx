@@ -67,7 +67,7 @@ function Register() {
                         <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-emerald-500 to-green-500 hover:to-green-600">
                             Register
                         </button>
-                        <a href="/login" className="underline decoration-2 text-blue-600 text-sm">Login</a>
+                        <a href="/login" className=" text-blue-600 text-xs">มีบัญชีอยู่เเล้วใช่หรือไม่? Login</a>
                     </div>
                 </form>
             </div>
