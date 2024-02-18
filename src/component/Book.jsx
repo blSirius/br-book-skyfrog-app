@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Book() {
     const [books, setBooks] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         getBooks();
@@ -23,25 +24,36 @@ function Book() {
         try {
             await axios.delete(import.meta.env.VITE_API + `delete_book/${id}`);
             setBooks(books.filter(book => book.id !== id));
-            alert('ลบหนังสือสำเร็จ')
+            alert('ลบหนังสือสำเร็จ');
         } catch (error) {
             console.log(error);
         }
     };
 
+    const filteredBooks = books?.filter(book =>
+        book.book_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <>
             <Navbar />
             <div className="container mx-auto px-4 py-8">
-                <div>
+                <div className="flex justify-between items-center">
                     <Link to="/add_book" className='inline-block m-4 text-white text-sm bg-green-500 hover:bg-green-600 p-2 rounded-full transition duration-300 ease-in-out'>
                         เพิ่มรายการหนังสือ
                     </Link>
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="ค้นหาหนังสือ..."
+                        className="p-2 rounded border border-gray-300"
+                    />
                 </div>
 
                 <div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {books && books.map(book => (
+                        {filteredBooks && filteredBooks.map(book => (
                             <div key={book.id} className='block p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out' style={{ backgroundColor: '#F3F4F6' }}>
                                 <h2 className="text-lg font-semibold mb-2" style={{ color: '#111827' }}>{book.book_name}</h2>
                                 <div className="flex justify-between items-center">
