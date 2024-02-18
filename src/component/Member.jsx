@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Member() {
     const [members, setMembers] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         getMembers();
@@ -23,20 +24,31 @@ function Member() {
         try {
             await axios.delete(import.meta.env.VITE_API+`delete_member/${id}`);
             setMembers(members.filter(member => member.id !== id));
-            alert('ลบข้อมูสำเร็จ')
+            alert('ลบข้อมูลสำเร็จ')
         } catch (error) {
             console.log(error);
         }
     };
 
+    const filteredMembers = members?.filter(member =>
+        member.id.toString().includes(searchQuery)
+    );
+
     return (
         <>
             <Navbar />
             <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-                <div>
+                <div className="flex justify-between items-center">
                     <Link to="/add_member" className='inline-block m-4 text-white text-sm bg-green-500 hover:bg-green-600 p-2 rounded-full transition duration-300 ease-in-out'>
                         เพิ่มสมาชิก
                     </Link>
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="ค้นหาด้วย ID..."
+                        className="p-2 rounded border border-gray-300"
+                    />
                 </div>
 
                 <div className="overflow-x-auto">
@@ -52,7 +64,7 @@ function Member() {
                             </tr>
                         </thead>
                         <tbody>
-                            {members && members.map(mb => (
+                            {filteredMembers && filteredMembers.map(mb => (
                                 <tr key={mb.id} className="border-b hover:bg-green-50">
                                     <td className="px-4 py-2 text-green-800">{mb.id}</td>
                                     <td className="px-4 py-2 text-green-800">{mb.name}</td>
